@@ -141,7 +141,6 @@ function emptyAllTasks() {
  */
 function sortLoadetTasks() {
   emptyAllTasks();
-  console.log('board say: ' + taskObjects.length)
   for (let i = 0; i < taskObjects.length; i++) {
     if (taskObjects[i]["currentProgress"] == 1) {
       inProgress.push(taskObjects[i]);
