@@ -1,5 +1,4 @@
 let setNewPriority = null;
-let boardContacts = []
 let phantomTaskObject = {};
 let editSubtask = [];
 
@@ -15,17 +14,6 @@ function actualizeSubtasks(columnId, id) {
 */
 function editActucalTask(columnId, id) {
     actualTask = list[columnId][id];
-}
-
-/**
-* loadings all Contacts from Storage
-*/
-async function loadBoardContacts() {
-    let loadedBoardContacts = [];
-    loadedBoardContacts = await getItem('contacts');
-    if (loadedBoardContacts.data && loadedBoardContacts.data.value && loadedBoardContacts.data.value != "null") {
-        boardContacts = JSON.parse(loadedBoardContacts.data.value);
-    }
 }
 
 /**
@@ -61,7 +49,7 @@ async function openEditableMode(columnNumber, id) {
     let content = document.getElementById(`cardLightboxContent`)
     content.innerHTML = templateLightboxEditTask(columnNumber, id)
     setNewPriority = null;
-    await loadBoardContacts();
+    await loadContacts();
     generatePseudoObject(columnNumber, id, 0);
     generatePseudoObject(columnNumber, id, 1);
     setChagesToPhantomTask(columnNumber, id);
@@ -245,12 +233,12 @@ function checkRequiredInputs() {
 /**
 * rendering each profil into 'Assign To' inside select box
 */
-function renderProfilsInAssignToEdit() {
+async function renderProfilsInAssignToEdit() {
     let content = document.getElementById("selectArea_1");
     let contactId = "";
     content.innerHTML = "";
-    for (let i = 0; i < boardContacts.length; i++) {
-        contactId = boardContacts[i]["contactID"];
+    for (let i = 0; i < contacts.length; i++) {
+        contactId = contacts[i]["contactID"];
         content.innerHTML += templateProfilForAssignTo(i, contactId);
     }
 }
@@ -308,10 +296,10 @@ function searchInAssignTo() {
     let toSearch = document.getElementById("selectInput_1").value;
     let content = document.getElementById("selectArea_1");
     content.innerHTML = "";
-    for (let i = 0; i < boardContacts.length; i++) {
-        let contactId = boardContacts[i]["contactID"]
-        let currentName = boardContacts[i]["name"].toLowerCase();
-        let currentEmail = boardContacts[i]["email"].toLowerCase();
+    for (let i = 0; i < contacts.length; i++) {
+        let contactId = contacts[i]["contactID"]
+        let currentName = contacts[i]["name"].toLowerCase();
+        let currentEmail = contacts[i]["email"].toLowerCase();
         if (toSearch.length > 0 && currentName.includes(toSearch.toLowerCase()) || currentEmail.includes(toSearch.toLowerCase())) {
             content.innerHTML += templateProfilForAssignTo(i, contactId);
         } else if (toSearch.length <= 0) {
@@ -372,13 +360,13 @@ function changeStatusAssignTo(contactId, id) {
         }
     }
     if (isFound == false) {
-        array.push(boardContacts[id]);
+        array.push(contacts[id]);
     }
     renderProfilsInAssignToEdit();
 }
 
 /**
-* set the rightz image if somebody is already involved to a task. 
+* set the right image, if somebody is already involved to a task. 
 * @param {string} contactId - just the id from current User.
 */
 function checkIsAssignedto(contactId) {

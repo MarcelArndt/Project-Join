@@ -222,8 +222,8 @@ function templateProfilForAssignTo(id, contactId){
     return `
           <div onclick ="changeStatusAssignTo('${contactId}', '${id}')" class="selectAreaSelector">
             <div class="selectAreaValue">
-              <div class="selectSafeSpace"><div class="circle red" style="background-color: ${boardContacts[id]["color"]}">${boardContacts[id]["initials"]}</div></div>
-              <p>${boardContacts[id]["name"]}</p>
+              <div class="selectSafeSpace"><div class="circle red" style="background-color: ${contacts[id]["color"]}">${contacts[id]["initials"]}</div></div>
+              <p>${contacts[id]["name"]}</p>
           </div>
             <div class="selectAreaSelectorFadeBackgound"><img src="${checkIsAssignedto(contactId)}"/></div>
           </div>    

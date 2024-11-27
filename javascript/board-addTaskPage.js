@@ -72,7 +72,7 @@ async function submitTaskOnBoard(){
 async function setTaskToBoard(){
     await reloadData();
     setTimeout(hideBlackbox(), 50); 
-    delteEventListener();
+    deleteEventListener();
 }
 
 
@@ -90,6 +90,8 @@ function clearAddTask(){
 * to reloading all data after creating a task
 */
 async function reloadData(){
+    taskObjects = [];
+    await loadTasks();
     await baordLoadTasks();
     await loadActualUser();
     await initialsOf();
@@ -119,7 +121,7 @@ function setBorderAtSubtask(){
 /**
 * after closing Add-Task-Windows it will delete all delteEventListener
 */
-function delteEventListener(){
+function deleteEventListener(){
     document.removeEventListener("click", unclosedWindowsEvent); 
     document.removeEventListener("click", alreadyCheckeCreateTask); 
 }
