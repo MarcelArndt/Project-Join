@@ -183,7 +183,8 @@ function unclosedWindowsEvent(event){
  */
 
 function checkCreateTask() {
-  if (
+  try{ 
+    if (
     document.getElementById("ltitlename").value.length >= 1 &&
     document.getElementById("ldatename").value &&
     document.getElementById("lcategoryname").selectedIndex > 0
@@ -197,6 +198,8 @@ function checkCreateTask() {
     document
       .getElementById("createTaskButton")
       .classList.remove("button-createtask");
+  }}catch{
+
   }
 }
 

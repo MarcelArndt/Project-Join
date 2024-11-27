@@ -559,12 +559,17 @@ margin-top: -8px;
 }
 
 #assignedContactsRenderArea {
+  color: #29ABE2;
   width: 100%;
   height: fit-content;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   overflow-y: auto;
+  background-color: #f6f7f8;
+  border-radius: 8px;
+  position: relative;
+  z-index: 99;
 }
 
 
