@@ -257,7 +257,6 @@ function randomiseCurrentProgress() {
     return Math.floor(Math.random() * 4)
 }
 
-
 async function restoreBoard() {
     await baordLoadTasks();
     await initialsOf();
@@ -307,9 +306,9 @@ async function initRestoreTask() {
     await deleteStoredTasks();
     tasks = newTaskList;
     await storeTasks();
-    console.info('Task are restored');
     emptyBoard();
     await restoreBoard()
+    console.info('Task are restored');
 }
 
 async function initRestoreContacts() {
