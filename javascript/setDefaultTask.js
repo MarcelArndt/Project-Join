@@ -146,7 +146,7 @@ const newTaskList = [
         currentProgress: randomiseCurrentProgress(),
         description: "Ein neues Framework ausprobieren, das die Entwicklung von Frontend-Komponenten erleichtern soll.",
         dueDate: randomiseDate(),
-        priority: "middle",
+        priority: "medium",
         color: "#3498db",
         assignedTo: randomiseAssignedTo(),
         subtasks: [
@@ -192,7 +192,7 @@ const newTaskList = [
         currentProgress: randomiseCurrentProgress(),
         description: "Eine neue relationale Datenbank für ein Projekt erstellen und verbinden.",
         dueDate: randomiseDate(),
-        priority: "middle",
+        priority: "medium",
         color: "#16a085",
         assignedTo: randomiseAssignedTo(),
         subtasks: [
@@ -209,7 +209,7 @@ const newTaskList = [
         currentProgress: randomiseCurrentProgress(),
         description: "Den Code eines Kollegen durchsehen und Verbesserungsvorschläge machen.",
         dueDate: randomiseDate(),
-        priority: "middle",
+        priority: "medium",
         color: "#9b59b6",
         assignedTo: randomiseAssignedTo(),
         subtasks: [
@@ -265,6 +265,7 @@ async function restoreBoard() {
     cleanAllColums();
     checkForCard();
     showNoCard(true);
+    initDropZone();
     showDropZone(0, true, false);
 }
 
