@@ -16,7 +16,7 @@ function editActucalTask(columnId, id) {
     actualTask = list[columnId][id];
 }
 
-/**
+/** 
 * save chages to the storage
 */
 async function saveChagesToTask(columnNumber, id) {
@@ -50,8 +50,7 @@ async function openEditableMode(columnNumber, id) {
     content.innerHTML = templateLightboxEditTask(columnNumber, id)
     setNewPriority = null;
     await loadContacts();
-    generatePseudoObject(columnNumber, id, 0);
-    generatePseudoObject(columnNumber, id, 1);
+    generatePseudoObject(columnNumber, id);
     setChagesToPhantomTask(columnNumber, id);
     checkCurrentPrio(columnNumber, id);
     rendersubtask();
@@ -60,38 +59,11 @@ async function openEditableMode(columnNumber, id) {
 }
 
 /**
-* rebuild from a object to prevent deep referencing in Objects. 
-*/
-function iteratetThoughObject(currentObject) {
-    let newArray = [];
-    let emptyObject = {}
-    for (let i = 0; i < currentObject.length; i++) {
-        Object.assign(emptyObject, currentObject[i]);
-        newArray.push(emptyObject);
-        emptyObject = {}
-    }
-    return newArray;
-}
-
-/**
-* will set up a new PseudoTask.
-* PseudoTask is needed to store all edits until it will be saved.
-* After all Edits gets saved the original Task gets overwritten by this PseudoObject.
+rebuild from a object to prevent deep referencing in Objects. .
 * @param {number} modus - switch beteween generating assignedTo and subtasks.
 */
-function generatePseudoObject(columnNumber, id, modus = 0) {
-    let customObject = {};
-    let currentObject = {};
-    let keyword = "";
-    if (modus == 0) {
-        currentObject = list[columnNumber][id]["assignedTo"];
-        keyword = "assignedTo";
-    } else if (modus == 1) {
-        currentObject = list[columnNumber][id]["subtasks"];
-        keyword = "subtasks";
-    }
-    customObject = { [keyword]: iteratetThoughObject(currentObject) };
-    Object.assign(phantomTaskObject, customObject)
+function generatePseudoObject(columnNumber, id) {
+    phantomTaskObject = JSON.parse(JSON.stringify(list[columnNumber][id]));
 }
 
 /**

@@ -3,7 +3,7 @@ let STORAGE_URL = "https://project-join-8f484-default-rtdb.firebaseio.com/";
 
 // Allgemeine Funktionen
 
-async function setItem(path="", value="") {
+async function setItem(path = "", value = "") {
     let url = STORAGE_URL + path + ".json";
     let response = await fetch(url, {
         method: 'PUT', // 'PUT' überschreibt die bestehenden Daten
@@ -13,7 +13,7 @@ async function setItem(path="", value="") {
     return await response.json();
 }
 
-async function getItem(path="") {
+async function getItem(path = "") {
     let url = STORAGE_URL + path + ".json";
     let response = await fetch(url);
     return await response.json(); // Gibt die JSON-Daten direkt zurück
