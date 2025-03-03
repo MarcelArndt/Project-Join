@@ -266,7 +266,7 @@ function checkCategoryType(category) {
       (categoryColor = "peach"), (text = "Refactor");
       break;
     case "documentation":
-      (categoryColor = "pruple"), (text = "Dokumentationy");
+      (categoryColor = "pruple"), (text = "Documentation");
       break;
     case "Testing":
       (categoryColor = "green"), (text = "Testing QA");
